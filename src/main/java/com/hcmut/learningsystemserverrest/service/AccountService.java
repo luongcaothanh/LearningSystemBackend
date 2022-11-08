@@ -1,5 +1,6 @@
 package com.hcmut.learningsystemserverrest.service;
 
+import com.hcmut.learningsystemserverrest.controller.customException.exception.InvalidAccountException;
 import com.hcmut.learningsystemserverrest.domain.Account;
 import com.hcmut.learningsystemserverrest.service.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AccountService {
 
             return jwtTokenUtil.generateAccessToken(account);
         } catch (BadCredentialsException ex) {
-            return null;
+            throw new InvalidAccountException();
         }
     }
 }

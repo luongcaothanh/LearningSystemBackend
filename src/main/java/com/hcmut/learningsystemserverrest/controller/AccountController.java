@@ -22,14 +22,10 @@ public class AccountController {
     @PostMapping("/account/login")
     public ResponseEntity<CustomResponse> login(@RequestParam String username, @RequestParam String password) {
         String accessToken = accountService.login(username, password);
-        if (accessToken != null) {
-            Map<String, Object> data = new HashMap<>();
-            data.put("accessToken", accessToken);
-            CustomResponse response = new CustomResponse("Success", 0, data);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } else {
-            CustomResponse response = new CustomResponse("Invalid username or password", 401, null);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("accessToken", accessToken);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
