@@ -1,7 +1,5 @@
 package com.hcmut.learningsystemserverrest.domain;
 
-import com.hcmut.learningsystemserverrest.domain.enumeration.ROLE;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,14 +7,18 @@ import javax.persistence.*;
 public class Role {
     @Id
     @Column(name = "RoleName", nullable = false, length = 32)
-    @Enumerated(EnumType.STRING)
-    private ROLE roleName;
+    private String roleName;
 
-    public ROLE getRoleName() {
+    public String getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(ROLE roleName) {
+    public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public String toString() {
+        return this.roleName;
     }
 }
