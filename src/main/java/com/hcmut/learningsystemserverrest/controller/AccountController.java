@@ -39,7 +39,6 @@ public class AccountController {
 
             Map<String, Object> data = new HashMap<>();
             data.put("accessToken", accessToken);
-
             CustomResponse response = new CustomResponse("Success", 0, data);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (BadCredentialsException ex) {
