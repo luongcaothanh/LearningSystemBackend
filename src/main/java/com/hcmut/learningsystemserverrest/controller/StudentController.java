@@ -1,6 +1,6 @@
 package com.hcmut.learningsystemserverrest.controller;
 
-import com.hcmut.learningsystemserverrest.repository.StudentRepository;
+import com.hcmut.learningsystemserverrest.service.StudentService;
 import com.hcmut.learningsystemserverrest.service.dto.StudentInfoDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,11 @@ import java.util.Map;
 @RequestMapping("api")
 public class StudentController {
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentService studentService;
 
     @GetMapping("/student")
     public ResponseEntity<CustomResponse> getAllStudent() {
-        List<StudentInfoDTO> students = studentRepository.getAllStudent();
+        List<StudentInfoDTO> students = studentService.getAllStudent();
 
         Map<String, Object> data = new HashMap<>();
         data.put("students", students);

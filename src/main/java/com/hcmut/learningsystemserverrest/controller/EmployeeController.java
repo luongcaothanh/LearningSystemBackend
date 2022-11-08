@@ -1,6 +1,6 @@
 package com.hcmut.learningsystemserverrest.controller;
 
-import com.hcmut.learningsystemserverrest.repository.EmployeeRepository;
+import com.hcmut.learningsystemserverrest.service.EmployeeService;
 import com.hcmut.learningsystemserverrest.service.dto.EmployeeInfoDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,11 @@ import java.util.Map;
 @RequestMapping("/api")
 public class EmployeeController {
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
 
     @GetMapping("/employee")
     public ResponseEntity<CustomResponse> getAllEmployee() {
-        List<EmployeeInfoDTO> employees = employeeRepository.getAllEmployee();
+        List<EmployeeInfoDTO> employees = employeeService.getAllEmployee();
 
         Map<String, Object> data = new HashMap<>();
         data.put("employees", employees);

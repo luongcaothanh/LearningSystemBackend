@@ -1,7 +1,7 @@
 package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.domain.Faculty;
-import com.hcmut.learningsystemserverrest.repository.FacultyRepository;
+import com.hcmut.learningsystemserverrest.service.FacultyService;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +18,11 @@ import java.util.Map;
 @RequestMapping("/api")
 public class FacultyController {
     @Autowired
-    private FacultyRepository facultyRepository;
+    private FacultyService facultyService;
 
     @GetMapping("/faculty")
     public ResponseEntity<CustomResponse> getAllFaculty() {
-        List<Faculty> faculties = facultyRepository.getAllFaculty();
+        List<Faculty> faculties = facultyService.getAllFaculty();
 
         Map<String, Object> data = new HashMap<>();
         data.put("faculties", faculties);
