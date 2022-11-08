@@ -12,4 +12,7 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, String> {
     @Query(value = "CALL getAllStudent();", nativeQuery = true)
     List<StudentInfoDTO> getAllStudent();
+
+    @Query(value = "CALL getStudentInfo(?1);", nativeQuery = true)
+    StudentInfoDTO getStudentInfo(String personID);
 }

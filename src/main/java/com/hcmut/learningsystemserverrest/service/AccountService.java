@@ -18,6 +18,18 @@ public class AccountService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private AAOEmployeeService aaoEmployeeService;
+
+    @Autowired
+    private ManagerService managerService;
+
+    @Autowired
+    private LecturerService lecturerService;
+
     public String login(String username, String password) {
         try {
             Authentication authenticate = authenticationManager.authenticate(
@@ -28,6 +40,21 @@ public class AccountService {
             return jwtTokenUtil.generateAccessToken(account);
         } catch (BadCredentialsException ex) {
             throw new InvalidAccountException();
+        }
+    }
+
+    public Object getCurrentPerson(Authentication authentication) {
+        Account account = (Account) authentication.getPrincipal();
+        if (account.getRoles().toString().equals("[ROLE_AAO]")) {
+            return aaoEmployeeService.getAAOInfo(account.getPerson().getIdCard());
+        } else if (account.getRoles().toString().equals("[ROLE_MANAGER]")) {
+            return managerService.getManagerInfo(account.getPerson().getIdCard());
+        } else if (account.getRoles().toString().equals("[ROLE_LECTURER]")) {
+            return lecturerService.getLecturerInfo(account.getPerson().getIdCard());
+        } else if (account.getRoles().toString().equals("[ROLE_STUDENT]")) {
+            return studentService.getStudentInfo(account.getPerson().getIdCard());
+        } else {
+            return null;
         }
     }
 }

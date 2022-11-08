@@ -15,4 +15,8 @@ public class StudentService {
     public List<StudentInfoDTO> getAllStudent() {
         return studentRepository.getAllStudent();
     }
+
+    public StudentInfoDTO getStudentInfo(String personID) {
+        return studentRepository.getStudentInfo(personID);
+    }
 }

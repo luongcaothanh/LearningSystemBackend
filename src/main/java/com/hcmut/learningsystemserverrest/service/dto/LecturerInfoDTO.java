@@ -4,7 +4,7 @@ import com.hcmut.learningsystemserverrest.domain.enumeration.GENDER;
 
 import java.time.LocalDate;
 
-public interface StudentInfoDTO {
+public interface LecturerInfoDTO {
     String getIdCard();
 
     GENDER getGender();
@@ -17,11 +17,11 @@ public interface StudentInfoDTO {
 
     String getEmail();
 
-    String getStudentID();
-
-    String getAdmissionYear();
+    String getEmployeeID();
 
     String getFacultyName();
+
+    String getManagerID();
 
     String getPhoneNumber();
 }
