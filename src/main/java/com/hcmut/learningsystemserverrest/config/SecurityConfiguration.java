@@ -30,7 +30,12 @@ public class SecurityConfiguration {
     String[] pathAAO = new String[]{"/api/student","/api/employee", "/api/create/aao",
                                     "/api/create/manager", "/api/create/lecturer",
                                     "/api/create/student", "/api/create/faculty",
-                                    "/api/create/student_status"};
+                                    "/api/create/student_status", "/api/create/class",
+                                    "/api/create/subclass"};
+
+    String[] pathManager = new String[]{"/api/create/subject"};
+
+    String[] pathLecturer = new String[]{"/api/create/textbook"};
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -71,6 +76,8 @@ public class SecurityConfiguration {
         http.authorizeRequests()
                 .antMatchers("/api/account/login").permitAll()
                 .antMatchers(pathAAO).hasAuthority("ROLE_AAO")
+                .antMatchers(pathManager).hasAuthority("ROLE_MANAGER")
+                .antMatchers(pathLecturer).hasAuthority("ROLE_LECTURER")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
