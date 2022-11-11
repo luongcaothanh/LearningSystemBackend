@@ -11,4 +11,7 @@ import java.util.List;
 public interface FacultyRepository extends JpaRepository<Faculty, String> {
     @Query(value = "CALL getAllFaculty();", nativeQuery = true)
     List<Faculty> getAllFaculty();
+
+    @Query(value = "CALL createFaculty(?1);", nativeQuery = true)
+    Faculty createFaculty(String facultyName);
 }

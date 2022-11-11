@@ -29,7 +29,8 @@ public class SecurityConfiguration {
 
     String[] pathAAO = new String[]{"/api/student","/api/employee", "/api/create/aao",
                                     "/api/create/manager", "/api/create/lecturer",
-                                    "/api/create/student"};
+                                    "/api/create/student", "/api/create/faculty",
+                                    "/api/create/student_status"};
 
     @Bean
     public UserDetailsService userDetailsService() {
