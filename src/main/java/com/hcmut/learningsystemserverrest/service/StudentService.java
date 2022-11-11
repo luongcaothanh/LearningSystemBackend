@@ -42,4 +42,13 @@ public class StudentService {
             throw new MySqlException(ex.getMessage());
         }
     }
+
+    public void attendSubclass(String studentID, String scid, String scSemester, String scYear,
+                               String scType, String scSubjectID) {
+        try {
+            studentRepository.attendSubclass(studentID, scid, scSemester, scYear, scType, scSubjectID);
+        } catch (DataIntegrityViolationException ex) {
+            throw new MySqlException(ex.getMessage());
+        }
+    }
 }

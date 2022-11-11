@@ -1,6 +1,7 @@
 package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.service.SubjectService;
+import com.hcmut.learningsystemserverrest.service.dto.PrerequisiteCreatedDTO;
 import com.hcmut.learningsystemserverrest.service.dto.SubjectCreatedDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,18 @@ public class SubjectController {
         data.put("id", subjectCreatedDTO.getId());
         data.put("name", subjectCreatedDTO.getSubjectName());
         data.put("creditsNo", subjectCreatedDTO.getCreditsNo());
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/create/prerequisite")
+    public ResponseEntity<CustomResponse> createPrerequisite(@ModelAttribute PrerequisiteCreatedDTO prerequisiteCreatedDTO) {
+        subjectService.createPrerequisite(prerequisiteCreatedDTO.getSubjectID(),
+                                            prerequisiteCreatedDTO.getPreSubjectID());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("subjectID", prerequisiteCreatedDTO.getSubjectID());
+        data.put("preSubjectID", prerequisiteCreatedDTO.getPreSubjectID());
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

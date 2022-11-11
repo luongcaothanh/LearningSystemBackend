@@ -20,4 +20,12 @@ public class SubjectService {
             throw new MySqlException(ex.getMessage());
         }
     }
+
+    public void createPrerequisite(String subjectID, String preSubjectID) {
+        try {
+            subjectRepository.createPrerequisite(subjectID, preSubjectID);
+        } catch (DataIntegrityViolationException ex) {
+            throw new MySqlException(ex.getMessage());
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.service.StudentService;
+import com.hcmut.learningsystemserverrest.service.dto.AttendSubclassCreatedDTO;
 import com.hcmut.learningsystemserverrest.service.dto.StudentCreatedDTO;
 import com.hcmut.learningsystemserverrest.service.dto.StudentInfoDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
@@ -45,6 +46,26 @@ public class StudentController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("username", studentCreatedDTO.getUsername());
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/attend")
+    public ResponseEntity<CustomResponse> attendSubclass(@ModelAttribute AttendSubclassCreatedDTO attendSubclassCreatedDTO) {
+        studentService.attendSubclass(attendSubclassCreatedDTO.getStudentID(),
+                                        attendSubclassCreatedDTO.getScid(),
+                                        attendSubclassCreatedDTO.getScSemester(),
+                                        attendSubclassCreatedDTO.getScYear(),
+                                        attendSubclassCreatedDTO.getScType(),
+                                        attendSubclassCreatedDTO.getScSubjectID());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("studentID", attendSubclassCreatedDTO.getStudentID());
+        data.put("subclassID", attendSubclassCreatedDTO.getScid());
+        data.put("semester", attendSubclassCreatedDTO.getScSemester());
+        data.put("year", attendSubclassCreatedDTO.getScYear());
+        data.put("type", attendSubclassCreatedDTO.getScType());
+        data.put("subjectID", attendSubclassCreatedDTO.getScSubjectID());
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
