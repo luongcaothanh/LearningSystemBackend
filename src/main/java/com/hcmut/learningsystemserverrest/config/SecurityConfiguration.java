@@ -27,7 +27,9 @@ public class SecurityConfiguration {
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
 
-    String[] pathAAO = new String[]{"/api/student","/api/employee"};
+    String[] pathAAO = new String[]{"/api/student","/api/employee", "/api/create/aao",
+                                    "/api/create/manager", "/api/create/lecturer",
+                                    "/api/create/student"};
 
     @Bean
     public UserDetailsService userDetailsService() {
