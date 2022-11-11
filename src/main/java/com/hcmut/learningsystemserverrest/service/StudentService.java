@@ -1,12 +1,14 @@
 package com.hcmut.learningsystemserverrest.service;
 
 import com.hcmut.learningsystemserverrest.controller.customException.exception.MySqlException;
+import com.hcmut.learningsystemserverrest.domain.Account;
 import com.hcmut.learningsystemserverrest.domain.enumeration.GENDER;
 import com.hcmut.learningsystemserverrest.repository.StudentRepository;
 import com.hcmut.learningsystemserverrest.service.dto.StudentCreatedDTO;
 import com.hcmut.learningsystemserverrest.service.dto.StudentInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,10 +45,12 @@ public class StudentService {
         }
     }
 
-    public void attendSubclass(String studentID, String scid, String scSemester, String scYear,
-                               String scType, String scSubjectID) {
+    public void attendSubclass(String scid, String scSemester, String scYear,
+                               String scType, String scSubjectID, Authentication authentication) {
+        Account account = (Account) authentication.getPrincipal();
+        StudentInfoDTO studentInfoDTO = getStudentInfo(account.getPerson().getIdCard());
         try {
-            studentRepository.attendSubclass(studentID, scid, scSemester, scYear, scType, scSubjectID);
+            studentRepository.attendSubclass(studentInfoDTO.getStudentID(), scid, scSemester, scYear, scType, scSubjectID);
         } catch (DataIntegrityViolationException ex) {
             throw new MySqlException(ex.getMessage());
         }

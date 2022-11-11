@@ -8,6 +8,7 @@ import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -51,16 +52,16 @@ public class StudentController {
     }
 
     @PostMapping("/attend")
-    public ResponseEntity<CustomResponse> attendSubclass(@ModelAttribute AttendSubclassCreatedDTO attendSubclassCreatedDTO) {
-        studentService.attendSubclass(attendSubclassCreatedDTO.getStudentID(),
-                                        attendSubclassCreatedDTO.getScid(),
+    public ResponseEntity<CustomResponse> attendSubclass(@ModelAttribute AttendSubclassCreatedDTO attendSubclassCreatedDTO,
+                                                         Authentication authentication) {
+        studentService.attendSubclass(attendSubclassCreatedDTO.getScid(),
                                         attendSubclassCreatedDTO.getScSemester(),
                                         attendSubclassCreatedDTO.getScYear(),
                                         attendSubclassCreatedDTO.getScType(),
-                                        attendSubclassCreatedDTO.getScSubjectID());
+                                        attendSubclassCreatedDTO.getScSubjectID(),
+                                        authentication);
 
         Map<String, Object> data = new HashMap<>();
-        data.put("studentID", attendSubclassCreatedDTO.getStudentID());
         data.put("subclassID", attendSubclassCreatedDTO.getScid());
         data.put("semester", attendSubclassCreatedDTO.getScSemester());
         data.put("year", attendSubclassCreatedDTO.getScYear());
