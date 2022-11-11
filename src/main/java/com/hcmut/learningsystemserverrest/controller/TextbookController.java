@@ -24,7 +24,8 @@ public class TextbookController {
     public ResponseEntity<CustomResponse> createTextbook(@ModelAttribute TextbookCreatedDTO textbookCreatedDTO) {
         textbookService.createTextbook(textbookCreatedDTO.getId(), textbookCreatedDTO.getTextbookName(),
                                         textbookCreatedDTO.getPublishingHouse(), textbookCreatedDTO.getPublishingYear(),
-                                        textbookCreatedDTO.getCategory(), textbookCreatedDTO.getAuthorName());
+                                        textbookCreatedDTO.getCategory(), textbookCreatedDTO.getAuthorName(),
+                                        textbookCreatedDTO.getSubjectID());
 
         Map<String, Object> data = new HashMap<>();
         data.put("name", textbookCreatedDTO.getTextbookName());

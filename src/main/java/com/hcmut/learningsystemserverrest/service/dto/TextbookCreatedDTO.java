@@ -13,6 +13,8 @@ public class TextbookCreatedDTO {
 
     private String authorName;
 
+    private String subjectID;
+
     public String getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class TextbookCreatedDTO {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public String getSubjectID() {
+        return subjectID;
+    }
+
+    public void setSubjectID(String subjectID) {
+        this.subjectID = subjectID;
     }
 }

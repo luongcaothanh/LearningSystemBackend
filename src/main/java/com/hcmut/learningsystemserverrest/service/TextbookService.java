@@ -12,9 +12,11 @@ public class TextbookService {
     private TextbookRepository textbookRepository;
 
     public void createTextbook(String id, String textbookName, String publishingHouse,
-                               String publishingYear, String category, String authorName) {
+                               String publishingYear, String category, String authorName,
+                                String subjectID) {
         try {
-            textbookRepository.createTextbook(id, textbookName, publishingHouse, publishingYear, category, authorName);
+            textbookRepository.createTextbook(id, textbookName, publishingHouse, publishingYear,
+                                                category, authorName, subjectID);
         } catch (DataIntegrityViolationException ex) {
             throw new MySqlException(ex.getMessage());
         }

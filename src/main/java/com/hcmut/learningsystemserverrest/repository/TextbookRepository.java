@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TextbookRepository extends JpaRepository<Textbook, String> {
-    @Query(value = "CALL createTextbook(?1,?2,?3,?4,?5,?6);", nativeQuery = true)
+    @Query(value = "CALL createTextbook(?1,?2,?3,?4,?5,?6,?7);", nativeQuery = true)
     void createTextbook(String id, String textbookName, String publishingHouse,
-                        String publishingYear, String category, String authorName);
+                        String publishingYear, String category, String authorName, String subjectID);
 }
