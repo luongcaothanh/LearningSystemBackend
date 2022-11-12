@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface AAOEmployeeRepository extends JpaRepository<AAOEmployee, String> {
@@ -20,4 +21,7 @@ public interface AAOEmployeeRepository extends JpaRepository<AAOEmployee, String
                                          String lName, LocalDate doB, String email,
                                          String employeeID, String facultyName,
                                          String username, String password);
+
+    @Query(value = "CALL getAllAAOEmployee();", nativeQuery = true)
+    List<EmployeeInfoDTO> getAllAAOEmployee();
 }

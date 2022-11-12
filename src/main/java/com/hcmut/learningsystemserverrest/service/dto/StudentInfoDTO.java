@@ -22,6 +22,4 @@ public interface StudentInfoDTO {
     String getAdmissionYear();
 
     String getFacultyName();
-
-    String getPhoneNumber();
 }

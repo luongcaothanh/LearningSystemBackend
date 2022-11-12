@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class LecturerService {
@@ -33,6 +34,18 @@ public class LecturerService {
 
             return lecturerRepository.createLecturer(idCard,  gender.toString(),  fName, lName,  doB,  email,
                     employeeID,  facultyName, username,  passwordEncode);
+        } catch (DataIntegrityViolationException ex) {
+            throw new MySqlException(ex.getMessage());
+        }
+    }
+
+    public List<LecturerInfoDTO> getAllLecturer() {
+        return lecturerRepository.getAllLecturer();
+    }
+
+    public List<LecturerInfoDTO> getLecturerOfFaculty(String facultyName) {
+        try {
+            return lecturerRepository.getLecturerOfFaculty(facultyName);
         } catch (DataIntegrityViolationException ex) {
             throw new MySqlException(ex.getMessage());
         }

@@ -3,9 +3,12 @@ package com.hcmut.learningsystemserverrest.service;
 import com.hcmut.learningsystemserverrest.controller.customException.exception.MySqlException;
 import com.hcmut.learningsystemserverrest.domain.enumeration.LEARNINGSTATUS;
 import com.hcmut.learningsystemserverrest.repository.StudentStatusRepository;
+import com.hcmut.learningsystemserverrest.service.dto.StudentStatusDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StudentStatusService {
@@ -19,5 +22,13 @@ public class StudentStatusService {
         } catch (DataIntegrityViolationException ex) {
             throw new MySqlException(ex.getMessage());
         }
+    }
+
+    public List<StudentStatusDTO> getStatusOfStudent(String studentID) {
+        return studentStatusRepository.getStatusOfStudent(studentID);
+    }
+
+    public StudentStatusDTO getStudentStatusOfSemester(String studentID, String semester) {
+        return studentStatusRepository.getStudentStatusOfSemester(studentID, semester);
     }
 }

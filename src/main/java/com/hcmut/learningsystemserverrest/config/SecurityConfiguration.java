@@ -31,13 +31,19 @@ public class SecurityConfiguration {
                                     "/api/create/manager", "/api/create/lecturer",
                                     "/api/create/student", "/api/create/faculty",
                                     "/api/create/student_status", "/api/create/class",
-                                    "/api/create/subclass"};
+                                    "/api/create/subclass", "/api/aao", "/api/manager",
+                                    "/api/lecturer"};
 
     String[] pathManager = new String[]{"/api/create/subject", "/api/create/prerequisite"};
 
     String[] pathLecturer = new String[]{"/api/create/textbook"};
 
     String[] pathStudent = new String[]{"/api/attend"};
+
+    String[] pathAOOManager = new String[]{"/api/student/faculty", "/api/lecturer/faculty"};
+
+    String[] pathAAOManagerStudent = new String[]{"/api/student_status/{studentID}",
+                                                    "/api/student_status/{studentID}/{semester}"};
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -81,6 +87,8 @@ public class SecurityConfiguration {
                 .antMatchers(pathManager).hasAuthority("ROLE_MANAGER")
                 .antMatchers(pathLecturer).hasAuthority("ROLE_LECTURER")
                 .antMatchers(pathStudent).hasAuthority("ROLE_STUDENT")
+                .antMatchers(pathAOOManager).hasAnyAuthority("ROLE_AAO", "ROLE_MANAGER")
+                .antMatchers(pathAAOManagerStudent).hasAnyAuthority("ROLE_AAO", "ROLE_MANAGER","ROLE_STUDENT")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 

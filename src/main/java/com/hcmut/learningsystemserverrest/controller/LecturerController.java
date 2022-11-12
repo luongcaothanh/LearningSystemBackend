@@ -2,16 +2,15 @@ package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.service.LecturerService;
 import com.hcmut.learningsystemserverrest.service.dto.EmployeeCreatedDTO;
+import com.hcmut.learningsystemserverrest.service.dto.LecturerInfoDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -35,6 +34,26 @@ public class LecturerController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("username", employeeCreatedDTO.getUsername());
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/lecturer")
+    public ResponseEntity<CustomResponse> getAllLecturer() {
+        List<LecturerInfoDTO> lecturers = lecturerService.getAllLecturer();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("lecturers", lecturers);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/lecturer/faculty")
+    public ResponseEntity<CustomResponse> getLecturerOfFaculty(@RequestParam String facultyName) {
+        List<LecturerInfoDTO> lecturers = lecturerService.getLecturerOfFaculty(facultyName);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("lecturers", lecturers);
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

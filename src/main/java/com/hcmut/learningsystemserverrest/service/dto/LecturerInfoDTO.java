@@ -22,6 +22,4 @@ public interface LecturerInfoDTO {
     String getFacultyName();
 
     String getManagerID();
-
-    String getPhoneNumber();
 }

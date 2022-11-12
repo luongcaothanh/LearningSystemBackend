@@ -31,6 +31,16 @@ public class StudentController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/student/faculty")
+    public ResponseEntity<CustomResponse> getStudentOfFaculty(@RequestParam String facultyName) {
+        List<StudentInfoDTO> students = studentService.getStudentOfFaculty(facultyName);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("students", students);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/create/student")
     public ResponseEntity<CustomResponse> createStudent(@ModelAttribute StudentCreatedDTO studentCreatedDTO) {
         StudentCreatedDTO studentCreatedDTO1 = studentService.createStudent(studentCreatedDTO.getIdCard(),

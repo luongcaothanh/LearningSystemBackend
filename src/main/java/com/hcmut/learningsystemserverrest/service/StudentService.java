@@ -55,4 +55,12 @@ public class StudentService {
             throw new MySqlException(ex.getMessage());
         }
     }
+
+    public List<StudentInfoDTO> getStudentOfFaculty(String facultyName) {
+        try {
+            return studentRepository.getStudentOfFaculty(facultyName);
+        } catch (DataIntegrityViolationException ex) {
+            throw new MySqlException(ex.getMessage());
+        }
+    }
 }

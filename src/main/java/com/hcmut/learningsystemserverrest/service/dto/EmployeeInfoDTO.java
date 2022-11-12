@@ -20,6 +20,4 @@ public interface EmployeeInfoDTO {
     String getEmployeeID();
 
     String getFacultyName();
-
-    String getPhoneNumber();
 }

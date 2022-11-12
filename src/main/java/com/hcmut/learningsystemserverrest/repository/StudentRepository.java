@@ -27,4 +27,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     @Query(value = "CALL attendSubclass(?1,?2,?3,?4,?5,?6);", nativeQuery = true)
     void attendSubclass(String studentID, String scid, String scSemester, String scYear,
                         String scType, String scSubjectID);
+
+    @Query(value = "CALL getStudentOfFaculty(?1);", nativeQuery = true)
+    List<StudentInfoDTO> getStudentOfFaculty(String facultyName);
 }
