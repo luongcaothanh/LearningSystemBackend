@@ -1,17 +1,15 @@
 package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.service.SubclassService;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassCreatedDTO;
+import com.hcmut.learningsystemserverrest.service.dto.*;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -33,6 +31,51 @@ public class SubclassController {
         data.put("type", subclassCreatedDTO.getcType());
         data.put("subjectID", subclassCreatedDTO.getCsubjectID());
         data.put("lecturerID", subclassCreatedDTO.getLecturerID());
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/subclass_class")
+    public ResponseEntity<CustomResponse> getSBOfClassInSemester(@RequestParam String subjectID,
+                                                                 @RequestParam String semester) {
+        List<SubclassOfClassDTO> subclassOfClasses = subclassService.getSBOfClassInSemester(subjectID, semester);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("subclassOfClasses", subclassOfClasses);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/subclass_student")
+    public ResponseEntity<CustomResponse> getSCOfStudentInSemester(@RequestParam String studentID,
+                                                                 @RequestParam String semester) {
+        List<SubclassOfStudentDTO> subclassOfStudents = subclassService.getSCOfStudentInSemester(studentID, semester);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("subclassOfStudents", subclassOfStudents);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/subclass_lecturer")
+    public ResponseEntity<CustomResponse> getSCOfLecturerInSemester(@RequestParam String lecturerID,
+                                                                   @RequestParam String semester) {
+        List<SubclassOfLecturerDTO> subclassOfLecturers = subclassService.getSCOfLecturerInSemester(lecturerID, semester);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("subclassOfLecturers", subclassOfLecturers);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/subclass/student")
+    public ResponseEntity<CustomResponse> getStudentsOfSubclass(@RequestParam String subclassID,
+                                                                @RequestParam String semester,
+                                                                @RequestParam String subjectID) {
+        List<StudentOfSubclassDTO> students = subclassService.getStudentsOfSubclass(subclassID, semester, subjectID);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("students", students);
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

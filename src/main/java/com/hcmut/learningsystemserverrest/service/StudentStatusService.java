@@ -31,4 +31,18 @@ public class StudentStatusService {
     public StudentStatusDTO getStudentStatusOfSemester(String studentID, String semester) {
         return studentStatusRepository.getStudentStatusOfSemester(studentID, semester);
     }
+
+    public void updateStudentStatus(String studentID, String semester, LEARNINGSTATUS learningStatus) {
+        try {
+            if (learningStatus.toString().equals("Learning")) {
+                studentStatusRepository.learningStudentStatus(studentID, semester);
+            } else if (learningStatus.toString().equals("Stop")) {
+                studentStatusRepository.stopStudentStatus(studentID, semester);
+            } else {
+                studentStatusRepository.postponeStudentStatus(studentID, semester);
+            }
+        } catch (DataIntegrityViolationException ex) {
+            throw new MySqlException(ex.getMessage());
+        }
+    }
 }

@@ -20,4 +20,13 @@ public interface StudentStatusRepository extends JpaRepository<StudentStatus, St
 
     @Query(value = "CALL getStudentStatusOfSemester(?1,?2)", nativeQuery = true)
     StudentStatusDTO getStudentStatusOfSemester(String studentID, String semester);
+
+    @Query(value = "CALL learningStudentStatus(?1,?2)", nativeQuery = true)
+    void learningStudentStatus(String studentID, String semester);
+
+    @Query(value = "CALL stopStudentStatus(?1,?2)", nativeQuery = true)
+    void stopStudentStatus(String studentID, String semester);
+
+    @Query(value = "CALL postponeStudentStatus(?1,?2)", nativeQuery = true)
+    void postponeStudentStatus(String studentID, String semester);
 }

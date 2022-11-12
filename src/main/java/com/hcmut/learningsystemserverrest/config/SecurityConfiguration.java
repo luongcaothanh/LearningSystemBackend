@@ -32,18 +32,23 @@ public class SecurityConfiguration {
                                     "/api/create/student", "/api/create/faculty",
                                     "/api/create/student_status", "/api/create/class",
                                     "/api/create/subclass", "/api/aao", "/api/manager",
-                                    "/api/lecturer"};
+                                    "/api/lecturer", "/api/update/student_status"};
 
-    String[] pathManager = new String[]{"/api/create/subject", "/api/create/prerequisite"};
+    String[] pathManager = new String[]{"/api/create/subject", "/api/create/prerequisite",
+                                        "/api/subject/status"};
 
     String[] pathLecturer = new String[]{"/api/create/textbook"};
 
     String[] pathStudent = new String[]{"/api/attend"};
 
-    String[] pathAOOManager = new String[]{"/api/student/faculty", "/api/lecturer/faculty"};
+    String[] pathAOOManager = new String[]{"/api/student/faculty", "/api/lecturer/faculty",
+                                            "/api/class/subject", "/api/class/faculty"};
+
+    String[] pathAAOManagerLecturer = new String[]{"/api/subclass_lecturer", "/api/subclass/student"};
 
     String[] pathAAOManagerStudent = new String[]{"/api/student_status/{studentID}",
-                                                    "/api/student_status/{studentID}/{semester}"};
+                                                    "/api/student_status/{studentID}/{semester}",
+                                                    "/api/subclass_student"};
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -88,6 +93,7 @@ public class SecurityConfiguration {
                 .antMatchers(pathLecturer).hasAuthority("ROLE_LECTURER")
                 .antMatchers(pathStudent).hasAuthority("ROLE_STUDENT")
                 .antMatchers(pathAOOManager).hasAnyAuthority("ROLE_AAO", "ROLE_MANAGER")
+                .antMatchers(pathAAOManagerLecturer).hasAnyAuthority("ROLE_AAO", "ROLE_MANAGER", "ROLE_LECTURER")
                 .antMatchers(pathAAOManagerStudent).hasAnyAuthority("ROLE_AAO", "ROLE_MANAGER","ROLE_STUDENT")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

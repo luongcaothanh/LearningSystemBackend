@@ -1,5 +1,6 @@
 package com.hcmut.learningsystemserverrest.controller;
 
+import com.hcmut.learningsystemserverrest.domain.enumeration.LEARNINGSTATUS;
 import com.hcmut.learningsystemserverrest.service.StudentStatusService;
 import com.hcmut.learningsystemserverrest.service.dto.StudentStatusCreatedDTO;
 import com.hcmut.learningsystemserverrest.service.dto.StudentStatusDTO;
@@ -50,6 +51,20 @@ public class StudentStatusController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("statusOfStudent", statusOfStudent);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/student_status")
+    public ResponseEntity<CustomResponse> updateStudentStatus(@RequestParam String studentID,
+                                                              @RequestParam String semester,
+                                                              @RequestParam LEARNINGSTATUS learningStatus) {
+        studentStatusService.updateStudentStatus(studentID, semester, learningStatus);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("studentID", studentID);
+        data.put("semester", semester);
+        data.put("learningstatus", learningStatus.toString());
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
