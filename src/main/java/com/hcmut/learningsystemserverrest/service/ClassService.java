@@ -23,8 +23,8 @@ public class ClassService {
         }
     }
 
-    public List<ClassOfSubjectDTO> getClassOfSubjectInSemester(String subjectID, String semester) {
-        return classRepository.getClassOfSubjectInSemester(subjectID, semester);
+    public List<ClassOfSubjectDTO> getClassOfSubjectInSemester(String subjectID) {
+        return classRepository.getClassOfSubjectInSemester(subjectID);
     }
 
     public List<ClassDTO> getClassOfSubjectInSemesterOfFaculty(String semester, String facultyName) {

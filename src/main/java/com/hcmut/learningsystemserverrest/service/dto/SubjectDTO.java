@@ -13,5 +13,5 @@ public interface SubjectDTO {
 
     String getFacultyName();
 
-    String getLecturerID();
+    String getLecturerName();
 }

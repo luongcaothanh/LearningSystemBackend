@@ -15,8 +15,8 @@ public interface ClassRepository extends JpaRepository<Class, ClassId> {
     @Query(value = "CALL createClass(?1,?2,?3,?4);", nativeQuery = true)
     void createClass(String semester, String classYear, String classType, String subjectID);
 
-    @Query(value = "CALL getClassOfSubjectInSemester(?1,?2);", nativeQuery = true)
-    List<ClassOfSubjectDTO> getClassOfSubjectInSemester(String subjectID, String semester);
+    @Query(value = "CALL getClassOfSubjectInSemester(?1);", nativeQuery = true)
+    List<ClassOfSubjectDTO> getClassOfSubjectInSemester(String subjectID);
 
     @Query(value = "CALL getClassOfSubjectInSemesterOfFaculty(?1,?2);", nativeQuery = true)
     List<ClassDTO> getClassOfSubjectInSemesterOfFaculty(String semester, String facultyName);

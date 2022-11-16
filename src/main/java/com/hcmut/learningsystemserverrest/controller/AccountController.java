@@ -2,6 +2,7 @@ package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.domain.Account;
 import com.hcmut.learningsystemserverrest.service.AccountService;
+import com.hcmut.learningsystemserverrest.service.dto.AccountDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,8 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/account/login")
-    public ResponseEntity<CustomResponse> login(@RequestParam String username, @RequestParam String password,
-                                                Authentication authentication) {
-        String[] result = accountService.login(username, password);
+    public ResponseEntity<CustomResponse> login(@RequestBody AccountDTO accountDTO) {
+        String[] result = accountService.login(accountDTO.getUsername(), accountDTO.getPassword());
 
         Map<String, Object> data = new HashMap<>();
         data.put("accessToken", result[0]);
