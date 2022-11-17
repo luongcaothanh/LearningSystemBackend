@@ -45,9 +45,8 @@ public class ClassController {
     }
 
     @GetMapping("/class/faculty")
-    public ResponseEntity<CustomResponse> getClassOfSubjectInSemesterOfFaculty(@RequestParam String semester,
-                                                                      @RequestParam String facultyName) {
-        List<ClassDTO> classes = classService.getClassOfSubjectInSemesterOfFaculty(semester, facultyName);
+    public ResponseEntity<CustomResponse> getClassOfFaculty(@RequestParam String facultyName) {
+        List<ClassDTO> classes = classService.getClassOfFaculty(facultyName);
 
         Map<String, Object> data = new HashMap<>();
         data.put("classes", classes);

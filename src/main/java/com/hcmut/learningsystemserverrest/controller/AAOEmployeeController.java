@@ -47,4 +47,14 @@ public class AAOEmployeeController {
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/aao/{personID}")
+    public ResponseEntity<CustomResponse> getAAOEmployeeInfo(@PathVariable String personID) {
+        EmployeeInfoDTO aao = aaoEmployeeService.getAAOInfo(personID);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("aaoEmployee", aao);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

@@ -19,5 +19,5 @@ public interface ClassDTO {
 
     String getFacultyName();
 
-    String getLecturerID();
+    String getLecturerName();
 }

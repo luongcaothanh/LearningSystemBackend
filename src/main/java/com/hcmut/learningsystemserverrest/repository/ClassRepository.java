@@ -18,7 +18,7 @@ public interface ClassRepository extends JpaRepository<Class, ClassId> {
     @Query(value = "CALL getClassOfSubjectInSemester(?1);", nativeQuery = true)
     List<ClassOfSubjectDTO> getClassOfSubjectInSemester(String subjectID);
 
-    @Query(value = "CALL getClassOfSubjectInSemesterOfFaculty(?1,?2);", nativeQuery = true)
-    List<ClassDTO> getClassOfSubjectInSemesterOfFaculty(String semester, String facultyName);
+    @Query(value = "CALL getClassOfFaculty(?1);", nativeQuery = true)
+    List<ClassDTO> getClassOfFaculty(String facultyName);
 
 }

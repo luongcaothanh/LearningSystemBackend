@@ -9,6 +9,8 @@ public interface SubclassOfClassDTO {
 
     String getCType();
 
+    String getCSubjectID();
+
     String getSubjectName();
 
     String getLecturer();

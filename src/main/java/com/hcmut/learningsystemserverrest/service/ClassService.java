@@ -27,7 +27,7 @@ public class ClassService {
         return classRepository.getClassOfSubjectInSemester(subjectID);
     }
 
-    public List<ClassDTO> getClassOfSubjectInSemesterOfFaculty(String semester, String facultyName) {
-        return classRepository.getClassOfSubjectInSemesterOfFaculty(semester, facultyName);
+    public List<ClassDTO> getClassOfFaculty(String facultyName) {
+        return classRepository.getClassOfFaculty(facultyName);
     }
 }

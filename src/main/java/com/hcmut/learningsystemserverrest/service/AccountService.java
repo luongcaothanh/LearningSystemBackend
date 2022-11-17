@@ -30,17 +30,15 @@ public class AccountService {
     @Autowired
     private LecturerService lecturerService;
 
-    public String[] login(String username, String password) {
+    public String login(String username, String password) {
         try {
-            String[] result = new String[2];
             Authentication authenticate = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password));
 
             Account account = (Account) authenticate.getPrincipal();
 
-            result[0] = jwtTokenUtil.generateAccessToken(account);
-            result[1] = account.getRoles().toString();
-            return result;
+            String accessToken = jwtTokenUtil.generateAccessToken(account);
+            return accessToken;
         } catch (BadCredentialsException ex) {
             throw new InvalidAccountException();
         }

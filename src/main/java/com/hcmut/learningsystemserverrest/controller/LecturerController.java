@@ -2,6 +2,7 @@ package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.service.LecturerService;
 import com.hcmut.learningsystemserverrest.service.dto.EmployeeCreatedDTO;
+import com.hcmut.learningsystemserverrest.service.dto.EmployeeInfoDTO;
 import com.hcmut.learningsystemserverrest.service.dto.LecturerInfoDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,16 @@ public class LecturerController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("lecturers", lecturers);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/lecturer/{personID}")
+    public ResponseEntity<CustomResponse> getLecturerInfo(@PathVariable String personID) {
+        LecturerInfoDTO lecturer = lecturerService.getLecturerInfo(personID);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("lecturer", lecturer);
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

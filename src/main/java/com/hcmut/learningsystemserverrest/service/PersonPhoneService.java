@@ -2,6 +2,7 @@ package com.hcmut.learningsystemserverrest.service;
 
 import com.hcmut.learningsystemserverrest.controller.customException.exception.MySqlException;
 import com.hcmut.learningsystemserverrest.repository.PersonPhoneRepository;
+import com.hcmut.learningsystemserverrest.service.dto.PersonPhoneDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,9 @@ public class PersonPhoneService {
         } catch (DataIntegrityViolationException ex) {
             throw new MySqlException(ex.getMessage());
         }
+    }
+
+    public PersonPhoneDTO getPersonPhone(String personID) {
+        return personPhoneRepository.getPersonPhone(personID);
     }
 }

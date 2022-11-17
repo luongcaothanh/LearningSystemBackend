@@ -47,4 +47,14 @@ public class ManagerController {
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/manager/{personID}")
+    public ResponseEntity<CustomResponse> getManagerInfo(@PathVariable String personID) {
+        EmployeeInfoDTO manager = managerService.getManagerInfo(personID);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("managerEmployee", manager);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

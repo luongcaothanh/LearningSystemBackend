@@ -21,11 +21,10 @@ public class AccountController {
 
     @PostMapping("/account/login")
     public ResponseEntity<CustomResponse> login(@RequestBody AccountDTO accountDTO) {
-        String[] result = accountService.login(accountDTO.getUsername(), accountDTO.getPassword());
+        String accessToken = accountService.login(accountDTO.getUsername(), accountDTO.getPassword());
 
         Map<String, Object> data = new HashMap<>();
-        data.put("accessToken", result[0]);
-        data.put("role", result[1]);
+        data.put("accessToken", accessToken);
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

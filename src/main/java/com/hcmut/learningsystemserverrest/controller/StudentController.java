@@ -80,4 +80,14 @@ public class StudentController {
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/student/{personID}")
+    public ResponseEntity<CustomResponse> getStudentInfo(@PathVariable String personID) {
+        StudentInfoDTO student = studentService.getStudentInfo(personID);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("student", student);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
