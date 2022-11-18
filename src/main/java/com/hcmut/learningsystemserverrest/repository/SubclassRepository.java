@@ -21,11 +21,11 @@ public interface SubclassRepository extends JpaRepository<Subclass, SubclassId> 
     @Query(value = "CALL getSBOfClassInSemester(?1,?2);", nativeQuery = true)
     List<SubclassOfClassDTO> getSBOfClassInSemester(String subjectID, String semester);
 
-    @Query(value = "CALL getSCOfStudentInSemester(?1,?2);", nativeQuery = true)
-    List<SubclassOfStudentDTO> getSCOfStudentInSemester(String studentID, String semester);
+    @Query(value = "CALL getSubclassOfStudent(?1);", nativeQuery = true)
+    List<SubclassOfStudentDTO> getSubclassOfStudent(String studentID);
 
-    @Query(value = "CALL getSCOfLecturerInSemester(?1,?2);", nativeQuery = true)
-    List<SubclassOfLecturerDTO> getSCOfLecturerInSemester(String lecturerID, String semester);
+    @Query(value = "CALL getSubclassOfLecturer(?1);", nativeQuery = true)
+    List<SubclassOfLecturerDTO> getSubclassOfLecturer(String lecturerID);
 
     @Query(value = "CALL getStudentsOfSubclass(?1,?2,?3);", nativeQuery = true)
     List<StudentOfSubclassDTO> getStudentsOfSubclass(String subclassID, String semester, String subjectID);

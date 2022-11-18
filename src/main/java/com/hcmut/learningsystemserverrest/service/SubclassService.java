@@ -30,12 +30,12 @@ public class SubclassService {
         return subclassRepository.getSBOfClassInSemester(subjectID, semester);
     }
 
-    public List<SubclassOfStudentDTO> getSCOfStudentInSemester(String studentID, String semester) {
-        return subclassRepository.getSCOfStudentInSemester(studentID, semester);
+    public List<SubclassOfStudentDTO> getSubclassOfStudent(String studentID) {
+        return subclassRepository.getSubclassOfStudent(studentID);
     }
 
-    public List<SubclassOfLecturerDTO> getSCOfLecturerInSemester(String lecturerID, String semester) {
-        return subclassRepository.getSCOfLecturerInSemester(lecturerID, semester);
+    public List<SubclassOfLecturerDTO> getSubclassOfLecturer(String lecturerID) {
+        return subclassRepository.getSubclassOfLecturer(lecturerID);
     }
 
     public List<StudentOfSubclassDTO> getStudentsOfSubclass(String subclassID, String semester, String subjectID) {

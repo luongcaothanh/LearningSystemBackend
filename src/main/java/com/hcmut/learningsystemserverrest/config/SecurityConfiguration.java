@@ -46,11 +46,12 @@ public class SecurityConfiguration {
                                             "/api/student/{personID}", "/api/aao/{personID}",
                                             "/api/manager/{personID}", "/api/lecturer/{personID}"};
 
-    String[] pathAAOManagerLecturer = new String[]{"/api/subclass_lecturer", "/api/subclass/student"};
+    String[] pathAAOManagerLecturer = new String[]{"/api/subclass_lecturer/{lecturerID}",
+                                                    "/api/subclass/student"};
 
     String[] pathAAOManagerStudent = new String[]{"/api/student_status/{studentID}",
                                                     "/api/student_status/{studentID}/{semester}",
-                                                    "/api/subclass_student"};
+                                                    "/api/subclass_student/{studentID}"};
 
     @Bean
     public UserDetailsService userDetailsService() {
