@@ -2,10 +2,7 @@ package com.hcmut.learningsystemserverrest.repository;
 
 import com.hcmut.learningsystemserverrest.domain.Subclass;
 import com.hcmut.learningsystemserverrest.domain.compositeId.SubclassId;
-import com.hcmut.learningsystemserverrest.service.dto.StudentOfSubclassDTO;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassOfClassDTO;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassOfLecturerDTO;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassOfStudentDTO;
+import com.hcmut.learningsystemserverrest.service.dto.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -29,4 +26,7 @@ public interface SubclassRepository extends JpaRepository<Subclass, SubclassId> 
 
     @Query(value = "CALL getStudentsOfSubclass(?1,?2,?3);", nativeQuery = true)
     List<StudentOfSubclassDTO> getStudentsOfSubclass(String subclassID, String semester, String subjectID);
+
+    @Query(value = "CALL getSubclassOfSubject(?1);", nativeQuery = true)
+    List<SubclassOfSubjectDTO> getSubclassOfSubject(String subjectID);
 }

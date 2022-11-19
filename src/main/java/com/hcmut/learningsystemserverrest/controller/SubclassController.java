@@ -57,7 +57,7 @@ public class SubclassController {
     }
 
     @GetMapping("/subclass_lecturer/{lecturerID}")
-    public ResponseEntity<CustomResponse> getSCOfLecturerInSemester(@PathVariable String lecturerID) {
+    public ResponseEntity<CustomResponse> getSubclassOfLecturer(@PathVariable String lecturerID) {
         List<SubclassOfLecturerDTO> subclassesOfLecturer = subclassService.getSubclassOfLecturer(lecturerID);
 
         Map<String, Object> data = new HashMap<>();
@@ -74,6 +74,16 @@ public class SubclassController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("students", students);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/subclass_subject/{subjectID}")
+    public ResponseEntity<CustomResponse> getSubclassOfSubject(@PathVariable String subjectID) {
+        List<SubclassOfSubjectDTO> subclassesOfSubject = subclassService.getSubclassOfSubject(subjectID);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("subclassesOfSubject", subclassesOfSubject);
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

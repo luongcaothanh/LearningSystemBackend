@@ -2,10 +2,7 @@ package com.hcmut.learningsystemserverrest.service;
 
 import com.hcmut.learningsystemserverrest.controller.customException.exception.MySqlException;
 import com.hcmut.learningsystemserverrest.repository.SubclassRepository;
-import com.hcmut.learningsystemserverrest.service.dto.StudentOfSubclassDTO;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassOfClassDTO;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassOfLecturerDTO;
-import com.hcmut.learningsystemserverrest.service.dto.SubclassOfStudentDTO;
+import com.hcmut.learningsystemserverrest.service.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -40,5 +37,9 @@ public class SubclassService {
 
     public List<StudentOfSubclassDTO> getStudentsOfSubclass(String subclassID, String semester, String subjectID) {
         return subclassRepository.getStudentsOfSubclass(subclassID, semester, subjectID);
+    }
+
+    public List<SubclassOfSubjectDTO> getSubclassOfSubject(String subjectID) {
+        return subclassRepository.getSubclassOfSubject(subjectID);
     }
 }
