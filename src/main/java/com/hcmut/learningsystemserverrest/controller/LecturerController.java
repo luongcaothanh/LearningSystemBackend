@@ -2,7 +2,6 @@ package com.hcmut.learningsystemserverrest.controller;
 
 import com.hcmut.learningsystemserverrest.service.LecturerService;
 import com.hcmut.learningsystemserverrest.service.dto.EmployeeCreatedDTO;
-import com.hcmut.learningsystemserverrest.service.dto.EmployeeInfoDTO;
 import com.hcmut.learningsystemserverrest.service.dto.LecturerInfoDTO;
 import com.hcmut.learningsystemserverrest.service.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class LecturerController {
     private LecturerService lecturerService;
 
     @PostMapping("/create/lecturer")
-    public ResponseEntity<CustomResponse> createManager(@ModelAttribute EmployeeCreatedDTO employeeCreatedDTO) {
+    public ResponseEntity<CustomResponse> createManager(@RequestBody EmployeeCreatedDTO employeeCreatedDTO) {
         EmployeeCreatedDTO employeeInfoDTO = lecturerService.createLecturer(employeeCreatedDTO.getIdCard(),
                 employeeCreatedDTO.getGender(),
                 employeeCreatedDTO.getfName(),

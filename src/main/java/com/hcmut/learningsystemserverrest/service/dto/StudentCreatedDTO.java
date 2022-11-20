@@ -14,7 +14,6 @@ public class StudentCreatedDTO {
 
     private String lName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate doB;
 
     private String email;

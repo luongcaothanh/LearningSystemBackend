@@ -32,7 +32,7 @@ public class AAOEmployeeService {
         try {
             String passwordEncode = passwordEncoder.encode(password);
 
-            return aaoEmployeeRepository.createAAOEmployee(idCard,  gender.toString(),  fName, lName,  doB,  email,
+            return aaoEmployeeRepository.createAAOEmployee(idCard, gender.toString(), fName, lName,  doB,  email,
                     employeeID,  facultyName, username,  passwordEncode);
         } catch (DataIntegrityViolationException ex) {
             throw new MySqlException(ex.getMessage());

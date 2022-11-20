@@ -20,7 +20,7 @@ public class AAOEmployeeController {
     private AAOEmployeeService aaoEmployeeService;
 
     @PostMapping("/create/aao")
-    public ResponseEntity<CustomResponse> createAAO(@ModelAttribute EmployeeCreatedDTO employeeCreatedDTO) {
+    public ResponseEntity<CustomResponse> createAAO(@RequestBody EmployeeCreatedDTO employeeCreatedDTO) {
         EmployeeCreatedDTO employeeInfoDTO = aaoEmployeeService.createAAOEmployee(employeeCreatedDTO.getIdCard(),
                                             employeeCreatedDTO.getGender(),
                                             employeeCreatedDTO.getfName(),

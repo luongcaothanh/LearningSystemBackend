@@ -20,7 +20,7 @@ public class ManagerController {
     private ManagerService managerService;
 
     @PostMapping("/create/manager")
-    public ResponseEntity<CustomResponse> createManager(@ModelAttribute EmployeeCreatedDTO employeeCreatedDTO) {
+    public ResponseEntity<CustomResponse> createManager(@RequestBody EmployeeCreatedDTO employeeCreatedDTO) {
         EmployeeCreatedDTO employeeInfoDTO = managerService.createManager(employeeCreatedDTO.getIdCard(),
                 employeeCreatedDTO.getGender(),
                 employeeCreatedDTO.getfName(),

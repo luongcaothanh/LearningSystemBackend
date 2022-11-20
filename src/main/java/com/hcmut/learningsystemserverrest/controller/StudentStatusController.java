@@ -64,7 +64,7 @@ public class StudentStatusController {
         Map<String, Object> data = new HashMap<>();
         data.put("studentID", studentID);
         data.put("semester", semester);
-        data.put("learningstatus", learningStatus.toString());
+        data.put("learningStatus", learningStatus.toString());
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

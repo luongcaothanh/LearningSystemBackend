@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @PostMapping("/create/student")
-    public ResponseEntity<CustomResponse> createStudent(@ModelAttribute StudentCreatedDTO studentCreatedDTO) {
+    public ResponseEntity<CustomResponse> createStudent(@RequestBody StudentCreatedDTO studentCreatedDTO) {
         StudentCreatedDTO studentCreatedDTO1 = studentService.createStudent(studentCreatedDTO.getIdCard(),
                 studentCreatedDTO.getGender(),
                 studentCreatedDTO.getfName(),
