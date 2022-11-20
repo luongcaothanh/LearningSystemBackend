@@ -29,4 +29,7 @@ public interface SubclassRepository extends JpaRepository<Subclass, SubclassId> 
 
     @Query(value = "CALL getSubclassOfSubject(?1);", nativeQuery = true)
     List<SubclassOfSubjectDTO> getSubclassOfSubject(String subjectID);
+
+    @Query(value = "CALL searchSubclassOfSubject(?1);", nativeQuery = true)
+    List<SubclassOfSubjectDTO> searchSubclassOfSubject(String keyword);
 }

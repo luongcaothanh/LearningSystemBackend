@@ -42,4 +42,8 @@ public class SubclassService {
     public List<SubclassOfSubjectDTO> getSubclassOfSubject(String subjectID) {
         return subclassRepository.getSubclassOfSubject(subjectID);
     }
+
+    public List<SubclassOfSubjectDTO> searchSubclassOfSubject(String keyword) {
+        return subclassRepository.searchSubclassOfSubject(keyword);
+    }
 }

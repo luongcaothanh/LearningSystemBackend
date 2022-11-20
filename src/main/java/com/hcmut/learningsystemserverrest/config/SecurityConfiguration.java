@@ -39,7 +39,7 @@ public class SecurityConfiguration {
 
     String[] pathLecturer = new String[]{"/api/create/textbook"};
 
-    String[] pathStudent = new String[]{"/api/attend"};
+    String[] pathStudent = new String[]{"/api/attend", "/api/subclass/search"};
 
     String[] pathAOOManager = new String[]{"/api/student/faculty", "/api/lecturer/faculty",
                                             "/api/class/subject", "/api/class/faculty",

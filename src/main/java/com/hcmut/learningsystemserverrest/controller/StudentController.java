@@ -62,7 +62,7 @@ public class StudentController {
     }
 
     @PostMapping("/attend")
-    public ResponseEntity<CustomResponse> attendSubclass(@ModelAttribute AttendSubclassCreatedDTO attendSubclassCreatedDTO,
+    public ResponseEntity<CustomResponse> attendSubclass(@RequestBody AttendSubclassCreatedDTO attendSubclassCreatedDTO,
                                                          Authentication authentication) {
         studentService.attendSubclass(attendSubclassCreatedDTO.getScid(),
                                         attendSubclassCreatedDTO.getScSemester(),

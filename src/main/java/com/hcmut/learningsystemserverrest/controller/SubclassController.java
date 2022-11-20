@@ -87,4 +87,14 @@ public class SubclassController {
         CustomResponse response = new CustomResponse("Success", 0, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/subclass/search")
+    public ResponseEntity<CustomResponse> searchSubclassOfSubject(@RequestParam String keyword) {
+        List<SubclassOfSubjectDTO> subclasses = subclassService.searchSubclassOfSubject(keyword);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("subclasses", subclasses);
+        CustomResponse response = new CustomResponse("Success", 0, data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
